@@ -20,11 +20,11 @@ export class Presence {
 		if (online < 1) {
 			this.afk = true
 			this.status = 'idle'
-			state = `${icon} Paused at Day ${dayTime.day}${nextHord}, ${dayTime.time}`
+			state = `${icon}Paused at Day ${dayTime.day}${nextHord}, ${dayTime.time}`
 		} else {
 			this.afk = false
 			this.status = 'online'
-			state = `${icon} Day ${dayTime.day}${nextHord}, ${dayTime.time}. Online: ${online}`
+			state = `${icon}Day ${dayTime.day}${nextHord}, ${dayTime.time} 🧍${online}`
 		}
 
 		this.activity = {

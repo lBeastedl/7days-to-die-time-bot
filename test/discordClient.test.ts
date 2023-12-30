@@ -24,6 +24,6 @@ describe('integration', { skip: !token, timeout: timeout }, () => {
 		const clientPresence = discord.setPresence(presence)
 
 		assert.equal(clientPresence.status, 'online')
-		assert.equal(clientPresence.activities[0].state, '💀 Day 7, 12:00. Online: 1')
+		assert.equal(clientPresence.activities[0].state, '💀Day 7, 12:00 🧍1')
 	})
 })
