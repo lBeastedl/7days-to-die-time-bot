@@ -33,7 +33,7 @@ Currently, there are some assumptions on the game server configurations:
 
 If your game server is running on the https://github.com/Didstopia/7dtd-server container image,
 you can simply run the bot in a Docker container next to your game instance. Adjust the variables and volume mappings
-accordingly. Or set up a container created from the `jaakkytt/7day-to-die-time-bot:latest` image,
+accordingly. Or set up a container created from the `jaakkytt/7days-to-die-time-bot:latest` image,
 and additionally specify the `TELNET_HOST` and `TELNET_PORT` variables. 
 
 ```
@@ -57,7 +57,7 @@ services:
       - SEVEN_DAYS_TO_DIE_TELNET_PASSWORD=
   bot:
     container_name: time-bot
-    image: jaakkytt/7day-to-die-time-bot:latest
+    image: jaakkytt/7days-to-die-time-bot:latest
     restart: unless-stopped
     depends_on:
       - game
