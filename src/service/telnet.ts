@@ -56,27 +56,29 @@ export class Telnet {
 		})
 	}
 
-	terminate() {
+	async terminate() {
 		if (!this.client) {
 			return Promise.resolve()
 		}
-
+		await this.client.end()
 		return this.client.destroy().then(() => {
 			console.log('Telnet disconnected!')
+			this.client = null
 		})
 	}
 
 	async getDayTime(): Promise<DayTime> {
 		return this.send('gettime', '^Day').then(response => {
-			const result = response.trim().match('Day (\\d+), (.....)')
+			const result = response.trim().match('Day (\\d+), (..):(..)')
 			if (!result) {
 				console.warn('Failed to match gettime entry from: ', response)
 				return { day: 0, time: '07:00', isHordNight: false }
 			}
 
 			const day = parseInt(result[1])
-			const time = result[2]
-			const isHordNight = day > 0 && day % 7 == 0
+			const hour = parseInt(result[2])
+			const time = `${result[2]}:${result[3]}`
+			const isHordNight = day % 7 == 0 || day % 7 == 1 && hour < 4
 
 			return { day, time, isHordNight }
 		})

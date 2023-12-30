@@ -28,6 +28,7 @@ const main = async () => {
 	const ready = Date.now()
 
 	await setPresence(discord, startupTelnet, ready)
+	await startupTelnet.terminate()
 
 	setInterval(async () => {
 		const updateTelnet = new Telnet(telnetHost, telnetPort, telnetPassword)

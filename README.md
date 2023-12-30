@@ -32,7 +32,7 @@ services:
   bot:
     container_name: time-bot
     image: jaakkytt/7day-to-die-time-bot:latest
-    restart: on-failure:10
+    restart: unless-stopped
     depends_on:
       - game
     environment:
