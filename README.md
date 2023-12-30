@@ -1,7 +1,7 @@
 # 7 Days to Die daytime bot
 
 A Discord bot that reports the daytime and the current player count of a _7 Days to Die_ game server
-as the bot activity state. The bot switches its _afk_ status is set to _Idle_ when there are no players on the server,
+as the bot activity state. The bot switches its _afk_ status to _Idle_ when there are no players on the server,
 and _Online_ when there are players.
 
 Example statuses:
