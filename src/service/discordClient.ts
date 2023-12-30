@@ -37,8 +37,7 @@ export class DiscordClient {
 						console.log(`Ready! Logged in as ${client.user.tag}`)
 						this.initialized = true
 						return resolve('ready')
-					}
-					catch (error) {
+					} catch (error) {
 						return reject(error)
 					}
 				})

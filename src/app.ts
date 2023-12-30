@@ -3,7 +3,7 @@ import { DiscordClient } from './service/discordClient.js'
 
 import {
 	discordToken, updateInterval, loginTimeout,
-	telnetHost, telnetPort, telnetPassword
+	telnetHost, telnetPort, telnetPassword,
 } from './config.js'
 import { Telnet } from './service/telnet.js'
 
@@ -12,7 +12,7 @@ const startupTelnet = new Telnet(telnetHost, telnetPort, telnetPassword)
 
 const services = [discord, startupTelnet]
 
-const setPresence = async (discord: DiscordClient, telnet: Telnet, ready: number) => {
+const setPresence = async (telnet: Telnet, ready: number) => {
 	const daytime = await telnet.getDayTime()
 	const online = await telnet.getPlayers()
 	const presence = new Presence(daytime, online, ready, updateInterval)
@@ -27,13 +27,13 @@ const main = async () => {
 
 	const ready = Date.now()
 
-	await setPresence(discord, startupTelnet, ready)
+	await setPresence(startupTelnet, ready)
 	await startupTelnet.terminate()
 
 	setInterval(async () => {
 		const updateTelnet = new Telnet(telnetHost, telnetPort, telnetPassword)
 		await updateTelnet.initialize()
-		await setPresence(discord, updateTelnet, ready)
+		await setPresence(updateTelnet, ready)
 		await updateTelnet.terminate()
 	}, updateInterval)
 }

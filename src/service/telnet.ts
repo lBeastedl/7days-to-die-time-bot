@@ -48,7 +48,7 @@ export class Telnet {
 			negotiationMandatory: false,
 			timeout: 15000,
 			execTimeout: 15000,
-			sendTimeout: 15000
+			sendTimeout: 15000,
 		}).then(() => {
 			this.client = client
 			console.log('Telnet connected!')
